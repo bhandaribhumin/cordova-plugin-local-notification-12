@@ -1,7 +1,8 @@
 /*
  * Apache 2.0 License
  *
- * Copyright (c) Sebastian bhandaribhumin 2017
+ * Copyright (c) Sebastian Katzer 2017
+ * Contributor Bhumin Bhandari
  *
  * This file contains Original Code and/or Modifications of Original Code
  * as defined in and that are subject to the Apache License
