@@ -54,7 +54,7 @@ ChangeLog
 
 ---
 
-Please also read the [Upgrade Guide](https://github.com/bhandaribhumin/cordova-plugin-local-notification-12s-12/wiki/Upgrade-Guide) for more information.
+Please also read the [Upgrade Guide](https://github.com/bhandaribhumin/cordova-plugin-local-notification-12/wiki/Upgrade-Guide) for more information.
 
 #### Version 0.8.5 (22.05.2017)
 - iOS 10
@@ -152,5 +152,5 @@ Please also read the [Upgrade Guide](https://github.com/bhandaribhumin/cordova-p
 - Renamed some local notification properties
  - `date`, `json`, `message` and `repeat`
  - Scheduling local notifications with the deprecated properties is still possible
-- [Kitchen Sink sample app](https://github.com/bhandaribhumin/cordova-plugin-local-notification-12s-12/tree/example)
-- [Wiki](https://github.com/bhandaribhumin/cordova-plugin-local-notification-12s-12/wiki)
+- [Kitchen Sink sample app](https://github.com/bhandaribhumin/cordova-plugin-local-notification-12/tree/example)
+- [Wiki](https://github.com/bhandaribhumin/cordova-plugin-local-notification-12/wiki)

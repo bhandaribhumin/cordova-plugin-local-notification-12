@@ -1,5 +1,5 @@
 
-<p align="left"><b><a href="https://github.com/bhandaribhumin/cordova-plugin-local-notification-12s-12/tree/example-x">SAMPLE APP</a> :point_right:</b></p>
+<p align="left"><b><a href="https://github.com/katzer/cordova-plugin-local-notifications/tree/example-x">SAMPLE APP</a> :point_right:</b></p>
 
 <br>
 
@@ -88,6 +88,15 @@ cordova.plugins.notification.local.schedule([
     { id: 1, title: 'My first notification' },
     { id: 2, title: 'My first notification' }
 ]);
+```
+
+## SetDummyNotification
+
+This method allows user to trigger runtime permission for android 13
+
+
+```js
+cordova.plugins.notification.local.setDummyNotifications();
 ```
 
 ## Properties
@@ -547,7 +556,7 @@ This method allows user to trigger runtime permission for android 13
 
 
 ```js
-cordova.plugins.notification.local.setDummyNotification();
+cordova.plugins.notification.local.setDummyNotifications();
 ```
 
 ## Installation
@@ -564,7 +573,7 @@ Or install a specific version:
 
 Or install the latest head version:
 
-    $ cordova plugin add https://github.com/bhandaribhumin/cordova-plugin-local-notification-12s-12.git
+    $ cordova plugin add https://github.com/bhandaribhumin/cordova-plugin-local-notification-12.git
 
 Or install from local source:
 
@@ -589,7 +598,7 @@ Made with :yum: from Leipzig
 © 2013 [appPlant GmbH][appplant]
 
 
-[ticket_template]: https://github.com/bhandaribhumin/cordova-plugin-local-notification-12s-12/issues/1188
+[ticket_template]: https://github.com/bhandaribhumin/cordova-plugin-local-notification-12/issues/1188
 [cordova]: https://cordova.apache.org
 [CLI]: http://cordova.apache.org/docs/en/edge/guide_cli_index.md.html#The%20Command-line%20Interface
 [npm]: https://www.npmjs.com/package/cordova-plugin-local-notification-12

@@ -1,6 +1,6 @@
 {
   "name": "cordova-plugin-local-notification-12",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Schedules and queries for local notifications",
   "cordova": {
     "id": "cordova-plugin-local-notification-12",
@@ -12,7 +12,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bhandaribhumin/cordova-plugin-local-notification-12s-12.git"
+    "url": "git+https://github.com/bhandaribhumin/cordova-plugin-local-notification-12.git"
   },
   "keywords": [
     "appplant",
@@ -49,7 +49,7 @@
   "author": "Sebastián bhandaribhumin",
   "license": "Apache 2.0",
   "bugs": {
-    "url": "https://github.com/bhandaribhumin/cordova-plugin-local-notification-12s-12/issues"
+    "url": "https://github.com/bhandaribhumin/cordova-plugin-local-notification-12/issues"
   },
-  "homepage": "https://github.com/bhandaribhumin/cordova-plugin-local-notification-12s-12#readme"
+  "homepage": "https://github.com/bhandaribhumin/cordova-plugin-local-notification-12#readme"
 }

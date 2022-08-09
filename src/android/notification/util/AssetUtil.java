@@ -314,7 +314,7 @@ public final class AssetUtil {
      */
     private File getTmpFile () {
         // If random UUID is not be enough see
-        // https://github.com/LukePulverenti/cordova-plugin-local-notification-12s-12/blob/267170db14044cbeff6f4c3c62d9b766b7a1dd62/src/android/notification/AssetUtil.java#L255
+        // https://github.com/LukePulverenti/cordova-plugin-local-notification/blob/267170db14044cbeff6f4c3c62d9b766b7a1dd62/src/android/notification/AssetUtil.java#L255
         return getTmpFile(UUID.randomUUID().toString());
     }
 
