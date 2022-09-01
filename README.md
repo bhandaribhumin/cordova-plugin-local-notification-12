@@ -604,3 +604,5 @@ Made with :yum: from Leipzig
 [npm]: https://www.npmjs.com/package/cordova-plugin-local-notification-12
 [apache2_license]: http://opensource.org/licenses/Apache-2.0
 [appplant]: http://appplant.de
+
+FIX: Added condition to get view from view or engine

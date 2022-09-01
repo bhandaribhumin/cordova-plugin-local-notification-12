@@ -154,3 +154,8 @@ Please also read the [Upgrade Guide](https://github.com/bhandaribhumin/cordova-p
  - Scheduling local notifications with the deprecated properties is still possible
 - [Kitchen Sink sample app](https://github.com/bhandaribhumin/cordova-plugin-local-notification-12/tree/example)
 - [Wiki](https://github.com/bhandaribhumin/cordova-plugin-local-notification-12/wiki)
+
+
+### Version 0.8.0 (05.03.2015)
+
+Added condition to get view from view or engine [PR](https://github.com/bhandaribhumin/cordova-plugin-local-notification-12/pull/1)
