@@ -40,9 +40,9 @@ import android.graphics.Paint;
 import android.graphics.Canvas;
 
 import java.util.List;
-import java.util.Random;
 
 import de.appplant.cordova.plugin.notification.action.Action;
+import de.appplant.cordova.plugin.notification.util.LaunchUtils;
 
 import static de.appplant.cordova.plugin.notification.Notification.EXTRA_UPDATE;
 
@@ -57,9 +57,6 @@ public final class Builder {
 
     // Notification options passed by JS
     private final Options options;
-
-    // To generate unique request codes
-    private final Random random = new Random();
 
     // Receiver to handle the clear event
     private Class<?> clearReceiver;
@@ -200,17 +197,7 @@ public final class Builder {
             .getLaunchIntentForPackage(pkgName)
             .putExtra("launchNotificationId", options.getId());
 
-        int reqCode = random.nextInt();
-        // request code and flags not added for demo purposes
-      int flags = PendingIntent.FLAG_UPDATE_CURRENT;
-      if (android.os.Build.VERSION.SDK_INT <= 30) {
-        // null
-      }else{
-        flags = 33554432 | PendingIntent.FLAG_UPDATE_CURRENT;
-      }
-
-      PendingIntent pendingIntent = PendingIntent.getActivity(context, reqCode, intent, flags);
-
+        PendingIntent pendingIntent = LaunchUtils.getActivityPendingIntent(context, intent);
         builder.setFullScreenIntent(pendingIntent, true);
     }
 
@@ -402,18 +389,7 @@ public final class Builder {
             intent.putExtras(extras);
         }
 
-        int reqCode = random.nextInt();
-
-      int flags = PendingIntent.FLAG_UPDATE_CURRENT;
-      if (android.os.Build.VERSION.SDK_INT <= 30) {
-        // null
-      }else{
-        flags = 33554432 | PendingIntent.FLAG_UPDATE_CURRENT;
-      }
-
-      PendingIntent deleteIntent = PendingIntent.getBroadcast(
-                context, reqCode, intent, flags);
-
+        PendingIntent deleteIntent = LaunchUtils.getBroadcastPendingIntent(context, intent);
         builder.setDeleteIntent(deleteIntent);
     }
 
@@ -428,6 +404,13 @@ public final class Builder {
         if (clickActivity == null)
             return;
 
+        Action[] actions = options.getActions();
+        if (actions != null && actions.length > 0 ) {
+          // if actions are defined, the user must click on button actions to launch the app.
+          // Don't make the notification clickable in this case
+          return;
+        }
+
         Intent intent = new Intent(context, clickActivity)
                 .putExtra(Notification.EXTRA_ID, options.getId())
                 .putExtra(Action.EXTRA_ID, Action.CLICK_ACTION_ID)
@@ -438,18 +421,7 @@ public final class Builder {
             intent.putExtras(extras);
         }
 
-        int reqCode = random.nextInt();
-
-      int flags = PendingIntent.FLAG_UPDATE_CURRENT;
-      if (android.os.Build.VERSION.SDK_INT <= 30) {
-        // null
-      }else{
-        flags = 33554432 | PendingIntent.FLAG_UPDATE_CURRENT;
-      }
-
-      PendingIntent contentIntent = PendingIntent.getService(
-                context, reqCode, intent, flags);
-
+        PendingIntent contentIntent = LaunchUtils.getTaskStackPendingIntent(context, intent);
         builder.setContentIntent(contentIntent);
     }
 
@@ -495,17 +467,7 @@ public final class Builder {
             intent.putExtras(extras);
         }
 
-        int reqCode = random.nextInt();
-
-      int flags = PendingIntent.FLAG_UPDATE_CURRENT;
-      if (android.os.Build.VERSION.SDK_INT <= 30) {
-        // null
-      }else{
-        flags = 33554432 | PendingIntent.FLAG_UPDATE_CURRENT;
-      }
-
-      return PendingIntent.getService(
-                context, reqCode, intent, flags);
+      return LaunchUtils.getTaskStackPendingIntent(context, intent);
     }
 
     /**

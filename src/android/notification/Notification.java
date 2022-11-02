@@ -29,7 +29,6 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.media.AudioManager;
 import android.net.Uri;
 import android.service.notification.StatusBarNotification;
 import android.util.Pair;
@@ -44,12 +43,6 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
-import java.util.Timer;
-import java.util.TimerTask;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReadWriteLock;
-import java.util.concurrent.locks.ReentrantReadWriteLock;
-
 import androidx.collection.ArraySet;
 import androidx.core.app.NotificationCompat;
 
@@ -60,7 +53,8 @@ import static android.os.Build.VERSION_CODES.M;
 import static androidx.core.app.NotificationCompat.PRIORITY_HIGH;
 import static androidx.core.app.NotificationCompat.PRIORITY_MAX;
 import static androidx.core.app.NotificationCompat.PRIORITY_MIN;
-import static java.lang.Thread.sleep;
+
+import de.appplant.cordova.plugin.notification.util.LaunchUtils;
 
 /**
  * Wrapper class around OS notification class. Handles basic operations
@@ -225,14 +219,7 @@ public final class Notification {
             if (!date.after(new Date()) && trigger(intent, receiver))
                 continue;
 
-            int flags = PendingIntent.FLAG_UPDATE_CURRENT;
-            if (android.os.Build.VERSION.SDK_INT <= 30) {
-              // null
-            }else{
-              flags = 33554432 | PendingIntent.FLAG_UPDATE_CURRENT;
-            }
-            PendingIntent pi = PendingIntent.getBroadcast(
-                    context, 0, intent, flags);
+            PendingIntent pi = LaunchUtils.getBroadcastPendingIntent(context, intent);
 
             try {
                 switch (options.getPrio()) {
@@ -318,17 +305,7 @@ public final class Notification {
 
         for (String action : actions) {
             Intent intent = new Intent(action);
-
-          int flags = PendingIntent.FLAG_UPDATE_CURRENT;
-          if (android.os.Build.VERSION.SDK_INT <= 30) {
-            // null
-          }else{
-            flags = 33554432 | PendingIntent.FLAG_UPDATE_CURRENT;
-          }
-
-            PendingIntent pi = PendingIntent.getBroadcast(
-                    context, 0, intent, flags);
-
+            PendingIntent pi = LaunchUtils.getBroadcastPendingIntent(context, intent);
             if (pi != null) {
                 getAlarmMgr().cancel(pi);
             }
