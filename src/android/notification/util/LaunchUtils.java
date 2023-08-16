@@ -11,6 +11,8 @@ import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
 
 import java.util.Random;
 
+import de.appplant.cordova.plugin.notification.Notification;
+
 public final class LaunchUtils {
 
    private static final Random _random = new Random();
@@ -32,7 +34,7 @@ public final class LaunchUtils {
     }
 
     public static PendingIntent getBroadcastPendingIntent(Context context, Intent intent) {
-        return  PendingIntent.getBroadcast(context, getRandomCode(), intent, getIntentFlags());
+        return  PendingIntent.getBroadcast(context, intent.getIntExtra(Notification.EXTRA_ID, getRandomCode()), intent, getIntentFlags());
     }
 
     public static PendingIntent getActivityPendingIntent(Context context, Intent intent) {
