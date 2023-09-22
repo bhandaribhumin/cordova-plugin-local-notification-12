@@ -55,6 +55,7 @@ import static androidx.core.app.NotificationCompat.PRIORITY_MAX;
 import static androidx.core.app.NotificationCompat.PRIORITY_MIN;
 
 import de.appplant.cordova.plugin.notification.util.LaunchUtils;
+import de.appplant.cordova.plugin.localnotification.TriggerReceiver;
 
 /**
  * Wrapper class around OS notification class. Handles basic operations
@@ -304,7 +305,7 @@ public final class Notification {
             return;
 
         for (String action : actions) {
-            Intent intent = new Intent(action);
+            Intent intent = new Intent(context, TriggerReceiver.class).setAction(action).putExtra(Notification.EXTRA_ID, options.getId());
             PendingIntent pi = LaunchUtils.getBroadcastPendingIntent(context, intent);
             if (pi != null) {
                 getAlarmMgr().cancel(pi);
