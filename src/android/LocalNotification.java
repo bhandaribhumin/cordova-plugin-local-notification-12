@@ -26,6 +26,7 @@ package de.appplant.cordova.plugin.localnotification;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.AlarmManager;
 import android.app.KeyguardManager;
 import android.app.NotificationManager;
 import android.content.ActivityNotFoundException;
@@ -240,6 +241,18 @@ public class LocalNotification extends CordovaPlugin {
             assert mNotificationManager != null;
             mBuilder.setChannelId(NOTIFICATION_CHANNEL_ID);
             mNotificationManager.createNotificationChannel(notificationChannel);
+        }
+
+        // For more information about this fix refer to 
+        // https://github.com/bhandaribhumin/cordova-plugin-local-notification-12/issues/15
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S) {
+            // check and set alarms
+            AlarmManager mAlarmManager = context.getSystemService(AlarmManager.class);
+            if (mAlarmManager.canScheduleExactAlarms() == false) {
+                    Intent intent = new Intent(android.provider.Settings.ACTION_REQUEST_SCHEDULE_EXACT_ALARM);
+                    intent.setData(Uri.fromParts("package", context.getPackageName(), null));
+                    cordova.startActivityForResult(this, intent, REQUEST_PERMISSIONS_CALL);
+           }
         }
 
         command.success();
